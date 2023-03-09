@@ -11,9 +11,11 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 
 import com.gandalgom.sample.databinding.data.*
+import com.gandalgom.sample.databinding.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     // Obtain ViewModel from ViewModelProviders
@@ -26,10 +28,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
-        updateName()
+        binding.name = "Max"
+        binding.lastName = "Yoo"
+
         updateLikes()
     }
 
@@ -40,14 +45,6 @@ class MainActivity : AppCompatActivity() {
     fun onLike(view: View) {
         viewModel.onLike()
         updateLikes()
-    }
-
-    /**
-     * So much findViewById! We'll fix that with Data Binding.
-     */
-    private fun updateName() {
-        findViewById<TextView>(R.id.plain_name).text = viewModel.name
-        findViewById<TextView>(R.id.plain_lastname).text = viewModel.lastName
     }
 
     /**
