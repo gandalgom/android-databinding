@@ -32,8 +32,7 @@ class MainActivity : AppCompatActivity() {
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // TODO: Explicitly setting initial values is a bad pattern. We'll fix that.
-        binding.name = "Max"
-        binding.lastName = "Yoo"
+        binding.viewModel = viewModel
 
         updateLikes()
     }
